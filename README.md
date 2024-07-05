@@ -1,7 +1,3 @@
-![Mon animation GIF](WelcomeGIF.gif)
-
-## Hi there 👋
-
 <!--
 **Endikk/Endikk** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
@@ -16,3 +12,9 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
+
+## Hi there 👋
+
+<p align="center">
+  <img src="WelcomeGIF.gif" alt="Mon animation GIF" style="width:100%;"/>
+</p>
