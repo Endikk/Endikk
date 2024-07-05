@@ -13,8 +13,7 @@ Here are some ideas to get you started:
 - ⚡ Fun fact: ...
 -->
 
-## Hi there 👋
-
 <p align="center">
-  <img src="WelcomeGIF.gif" alt="Mon animation GIF" style="width:100%;"/>
+  <img src="WelcomeGIF.gif" alt="Mon animation GIF" style="width:800px; height:600px;"/>
 </p>
+## Hi there 👋
