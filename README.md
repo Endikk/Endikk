@@ -31,9 +31,6 @@ Je vise à approfondir ma spécialisation dans les systèmes d'information et l'
 - Veille technologique constante 📱
 - Adepte de l'innovation et des nouvelles tendances 💡
 
-## 📫 Contact
-N'hésitez pas à me contacter pour échanger sur des projets, des opportunités ou simplement pour discuter de technologies émergentes !
-
 ## 🌐 Socials:
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/https://www.linkedin.com/in/lucaslabonde/) [![email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:labondepro@gmail.com) 
 
@@ -46,5 +43,8 @@ N'hésitez pas à me contacter pour échanger sur des projets, des opportunités
 
 ---
 [![](https://visitcount.itsvg.in/api?id=Endikk&icon=0&color=13)](https://visitcount.itsvg.in)
+
+## 📫 Contact
+N'hésitez pas à me contacter pour échanger sur des projets, des opportunités ou simplement pour discuter de technologies émergentes !
 
 <!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
