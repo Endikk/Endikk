@@ -14,7 +14,7 @@ Here are some ideas to get you started:
 -->
 
 <p align="center">
-  <img src="giphy.gif" alt="Mon animation GIF" style="width:747px; height:498px;"/>
+  <img src="giphy.gif" alt="Mon animation GIF" style="width:747px; height:650;"/>
 </p>
 
 # 💫 About Me:
