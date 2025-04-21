@@ -18,8 +18,22 @@ Here are some ideas to get you started:
 </p>
 
 # 💫 About Me:
-👋 Bienvenue sur mon GitHub !<br>><br>🌱 Projets actuels<br>Actuellement en 4ème année de Master, je travaille sur des projets qui combinent systèmes d'information et intelligence artificielle, avec pour objectif d'apporter des solutions innovantes à des problématiques réelles.<br>🔭 Objectifs<br>Je vise à approfondir ma spécialisation dans les systèmes d'information et l'intelligence artificielle, en gardant toujours à l'esprit l'impact concret que peuvent avoir ces technologies.<br>⚡ En dehors du code<br><br>Passionné de Formule 1 🏎️<br>Amateur de basket 🏀<br>Veille technologique constante 📱<br>Adepte de l'innovation et des nouvelles tendances 💡<br><br>📫 Contact<br>N'hésitez pas à me contacter pour échanger sur des projets, des opportunités ou simplement pour discuter de technologies émergentes !
+👋 Bienvenue sur mon GitHub !
 
+## 🌱 Projets actuels 
+Actuellement en 4ème année de Master, je travaille sur des projets qui combinent systèmes d'information et intelligence artificielle, avec pour objectif d'apporter des solutions innovantes à des problématiques réelles.
+
+## 🔭 Objectifs
+Je vise à approfondir ma spécialisation dans les systèmes d'information et l'intelligence artificielle, en gardant toujours à l'esprit l'impact concret que peuvent avoir ces technologies.
+
+## ⚡ En dehors du code
+- Passionné de Formule 1 🏎️
+- Amateur de basket 🏀
+- Veille technologique constante 📱
+- Adepte de l'innovation et des nouvelles tendances 💡
+
+## 📫 Contact
+N'hésitez pas à me contacter pour échanger sur des projets, des opportunités ou simplement pour discuter de technologies émergentes !
 
 ## 🌐 Socials:
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/https://www.linkedin.com/in/lucaslabonde/) [![email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:labondepro@gmail.com) 
