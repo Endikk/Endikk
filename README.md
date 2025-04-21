@@ -39,8 +39,9 @@ Je vise à approfondir ma spécialisation dans les systèmes d'information et l'
 ## 📊 GitHub Stats:
 <div align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=Endikk&theme=github_dark&hide_border=false&include_all_commits=false&count_private=false" alt="GitHub Stats" width="45%" />
-  <img src="https://nirzak-streak-stats.vercel.app/?user=Endikk&theme=github_dark&hide_border=false" alt="GitHub Streak" width="45%" />
+  <img src="https://nirzak-streak-stats.vercel.app/?user=Endikk&theme=github_dark&hide_border=false" alt="GitHub Streak" width="55%" />
   <br />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Endikk&theme=github_dark&hide_border=false&include_all_commits=false&count_private=false&layout=compact" alt="Top Langs" width="50%" />
 </div>
 
 
