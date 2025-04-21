@@ -12,7 +12,9 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
-![Header](./giphy.gif)
+<p align="center">
+  <img src="./giphy.gif" alt="Header">
+</p>
 
 # 💫 About Me:
 👋 Bienvenue sur mon GitHub !
