@@ -12,7 +12,7 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
-
+![Header](./giphy.gif)
 <p align="center">
   <img src="giphy.gif" alt="Mon animation GIF" style="width:800px; height:550px;"/>
 </p>
