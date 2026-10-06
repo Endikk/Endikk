@@ -1,0 +1,6 @@
+# The daily workflow (fetch_contributions.py, render_heatmap_svg.py) is stdlib-only.
+# These are only for regenerating the portrait locally (prep_photo.py, make_ascii_svg.py):
+pillow
+numpy
+opencv-python
+rembg[cpu]  # optional: without it prep_photo.py falls back to OpenCV GrabCut
