@@ -2,7 +2,7 @@ name: Update profile art
 
 "on":
   schedule:
-    - cron: "17 5 * * *" # ~07:17 Paris time (summer), daily
+    - cron: "17 */6 * * *" # every 6 hours: 00:17, 06:17, 12:17, 18:17 UTC
   workflow_dispatch: {}
   push:
     branches: [main]
