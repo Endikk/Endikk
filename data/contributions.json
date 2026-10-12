@@ -2,7 +2,7 @@
  "username": "Endikk",
  "stats": {
   "total": 352,
-  "days": 365,
+  "days": 366,
   "active_days": 51,
   "current_streak": {
    "days": 0,
@@ -1861,6 +1861,11 @@
   },
   {
    "date": "2026-10-11",
+   "count": 0,
+   "level": 0
+  },
+  {
+   "date": "2026-10-12",
    "count": 0,
    "level": 0
   }
