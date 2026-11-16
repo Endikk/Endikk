@@ -1,32 +1,34 @@
-"""Render data/contributions.json as a stats dashboard (assets/stats-dashboard.svg).
+"""Render data/contributions.json as the two stats panes that sit side by side:
 
-Six stat tiles (streaks, totals, best day, average) and a contributions-per-month bar
-chart. Sits next to the ASCII portrait, so its height follows the portrait's.
-Tiles fade up one after another, then the bars grow - once, no loop.
-STATIC=1 writes the final frame only.
+  assets/stats-months.svg   wide: contributions per month, the best month in the accent
+  assets/stats-records.svg  narrow: streaks, active days, best day, average
+
+The README shows them at 66 % and 34 % with no space between, so the gutter lives inside
+the SVGs and both share one height. Figures rise in, bars grow, once.
+STATIC=1 writes the final frame only. Stdlib only.
 """
 
 from __future__ import annotations
 
 import json
-import os
 from pathlib import Path
 from xml.sax.saxutils import escape
 
-from _svg import BAR, BORDER, FG, GREEN, MUTED, TITLE_H, fr_date, fr_number, height_beside, svg_doc, window
+from _svg import (ACCENT, BODY_Y, EASE, FG, LINE, MONTHS_SHORT, MUTED, PAD, STATIC, SUB, W, delay, fr_date,
+                  fr_number, panel, prompt, svg_doc)
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data" / "contributions.json"
-PORTRAIT = ROOT / "assets" / "lucas-ascii.svg"
-OUT = ROOT / "assets" / "stats-dashboard.svg"
-STATIC = os.environ.get("STATIC") == "1"
+OUT = ROOT / "assets"
 
-W = 490  # README widths: portrait 370 + dashboard 490 = heatmap 860
-PAD = 14
-GAP = 10
-TILE_H = 72
-BAR_COLOR, TOP_COLOR = "#26a641", "#69f0a0"
-INITIALS = "JFMAMJJASOND"
+GUTTER = 16
+MONTHS_W = 560
+RECORDS_W = W - MONTHS_W - GUTTER
+ROW = 48  # one record
+ROWS = 5
+H = BODY_Y + ROWS * ROW + PAD - 8
+BAR_COLOR = "#2f363f"  # neutral step: only the best month takes the accent
+BAR_W = 24
 
 
 def span(streak: dict, empty: str) -> str:
@@ -40,96 +42,77 @@ def days_unit(n: int) -> str:
     return "jour" if n <= 1 else "jours"  # French: 0 jour, 1 jour, 2 jours
 
 
-def tile(x: float, y: float, w: float, label: str, value: str, unit: str, sub: str, delay: float) -> str:
-    unit_markup = f'<tspan font-size="12" font-weight="400" fill="{MUTED}"> {escape(unit)}</tspan>' if unit else ""
-    return (
-        f'<g class="t" style="animation-delay:{delay:.2f}s">'
-        f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{TILE_H}" rx="6" fill="{BAR}" stroke="{BORDER}"/>'
-        f'<text x="{x + 12:.1f}" y="{y + 19:.1f}" font-size="11" fill="{MUTED}">$ {escape(label)}</text>'
-        f'<text x="{x + 12:.1f}" y="{y + 46:.1f}" font-size="24" font-weight="700" fill="{GREEN}">'
-        f"{escape(value)}{unit_markup}</text>"
-        f'<text x="{x + 12:.1f}" y="{y + 62:.1f}" font-size="10" fill="{MUTED}">{escape(sub)}</text>'
-        "</g>"
-    )
-
-
-def main() -> None:
-    data = json.loads(DATA.read_text(encoding="utf-8"))
-    s = data["stats"]
-    height = height_beside(PORTRAIT)
-
-    cur, best = s["current_streak"], s["longest_streak"]
-    avg = s["total"] / s["active_days"] if s["active_days"] else 0
-    best_day = s["best_day"]
-    tiles = [
-        ("série en cours", str(cur["days"]), days_unit(cur["days"]), span(cur, "aucune en cours")),
-        ("plus longue série", str(best["days"]), days_unit(best["days"]), span(best, "aucune pour l'instant")),
-        ("contributions", fr_number(s["total"]), "", "sur la dernière année"),
-        ("jours actifs", str(s["active_days"]), f"/ {s['days']}",
-         f"{fr_number(100 * s['active_days'] / s['days'])} % de l'année"),
-        ("meilleur jour", fr_number(best_day["count"]), "", fr_date(best_day["date"]) if best_day["count"] else "—"),
-        ("moy. / jour actif", fr_number(avg, 1), "", "contributions"),
-    ]
-
-    body = [window(W, height, "lucas@github: ~/stats.sh")]
-    tw = (W - 2 * PAD - GAP) / 2
-    y0 = TITLE_H + PAD
-    for i, (label, value, unit, sub) in enumerate(tiles):
-        col, row = i % 2, i // 2
-        body.append(tile(PAD + col * (tw + GAP), y0 + row * (TILE_H + GAP), tw, label, value, unit, sub, 0.2 + i * 0.12))
-
-    # --- contributions / month ------------------------------------------------
-    cy = y0 + 3 * (TILE_H + GAP)
-    ch = height - PAD - cy
-    cw = W - 2 * PAD
+def months_pane(s: dict) -> str:
+    head, t = prompt("./stats.sh --mois", "contributions par mois", width=MONTHS_W)
+    base = H - PAD - 24  # the line the bars stand on, month names below it
+    max_h = base - (BODY_Y + 28)
     months = list(s["monthly"].items())
     top = max(v for _, v in months) or 1
     # Highlight a single bar: the most recent of the best months.
     top_i = max((i for i, (_, v) in enumerate(months) if v == top), default=-1)
-    chart_delay = 0.2 + len(tiles) * 0.12
-    body.append(
-        f'<g class="t" style="animation-delay:{chart_delay:.2f}s">'
-        f'<rect x="{PAD}" y="{cy:.1f}" width="{cw}" height="{ch:.1f}" rx="6" fill="{BAR}" stroke="{BORDER}"/>'
-        f'<text x="{PAD + 12}" y="{cy + 19:.1f}" font-size="11" fill="{MUTED}">$ contributions / mois</text></g>'
-    )
-    base = cy + ch - 24  # bars stand on this line, initials sit below it
-    max_h = base - (cy + 44)
-    slot = (cw - 24) / len(months)
-    bw = slot * 0.62
+
+    body = [panel(H, MONTHS_W), head,
+            f'<line{delay(t)} x1="{PAD}" y1="{base}.5" x2="{MONTHS_W - PAD}" y2="{base}.5" stroke="{LINE}"/>']
+    slot = (MONTHS_W - 2 * PAD) / len(months)
     for i, (month, v) in enumerate(months):
-        bx = PAD + 12 + i * slot + (slot - bw) / 2
+        cx = PAD + (i + 0.5) * slot
         bh = max(v / top * max_h, 2)
         is_top = i == top_i and v > 0
-        delay = chart_delay + 0.3 + i * 0.06
+        bt = t + 0.1 + i * 0.04
+        grow = "" if STATIC else f' class="b" style="animation-delay:{bt:.2f}s"'
         body.append(
-            f'<rect class="b" style="animation-delay:{delay:.2f}s" x="{bx:.1f}" y="{base - bh:.1f}" width="{bw:.1f}" '
-            f'height="{bh:.1f}" rx="2" fill="{TOP_COLOR if is_top else BAR_COLOR}" opacity="{1 if v else 0.35}">'
-            f"<title>{escape(month)} : {v}</title></rect>"
-            f'<text class="t" style="animation-delay:{chart_delay:.2f}s" x="{bx + bw / 2:.1f}" y="{base + 15:.1f}" '
-            f'text-anchor="middle" font-size="10" fill="{MUTED}">{INITIALS[int(month[5:]) - 1]}</text>'
+            f'<rect{grow} x="{cx - BAR_W / 2:.1f}" y="{base - bh:.1f}" width="{BAR_W}" height="{bh:.1f}" rx="3" '
+            f'fill="{ACCENT if is_top else BAR_COLOR}"><title>{escape(month)} : {v}</title></rect>'
+            f'<text{delay(bt + 0.3)} x="{cx:.1f}" y="{base - bh - 8:.1f}" text-anchor="middle" '
+            f'font-size="12" fill="{FG if is_top else MUTED}">{fr_number(v)}</text>'
+            f'<text{delay(t)} x="{cx:.1f}" y="{base + 20}" text-anchor="middle" font-size="12" '
+            f'fill="{SUB if is_top else MUTED}">{MONTHS_SHORT[int(month[5:]) - 1]}</text>'
         )
-        if is_top:
-            body.append(
-                f'<text class="t" style="animation-delay:{delay + 0.5:.2f}s" x="{bx + bw / 2:.1f}" y="{base - bh - 6:.1f}" '
-                f'text-anchor="middle" font-size="11" font-weight="700" fill="{FG}">{fr_number(v)}</text>'
-            )
-
-    style = ""
-    if not STATIC:
-        style = (
-            "@keyframes up{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}"
-            "@keyframes grow{from{transform:scaleY(0)}to{transform:none}}"
-            ".t{animation:up .45s ease-out both}"
-            ".b{transform-box:fill-box;transform-origin:50% 100%;animation:grow .6s cubic-bezier(.2,.8,.3,1) both}"
-        )
-
-    label = (
-        f"Statistiques GitHub : {s['total']} contributions, série en cours {cur['days']} j, "
-        f"plus longue série {best['days']} j, {s['active_days']} jours actifs"
+    style = "" if STATIC else (
+        "@keyframes grow{from{transform:scaleY(0)}to{transform:none}}"
+        f".b{{transform-box:fill-box;transform-origin:50% 100%;animation:grow .5s {EASE} both}}"
     )
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(svg_doc(W, height, "".join(body), style, label), encoding="utf-8")
-    print(f"{len(months)} months, {W}x{height} -> {OUT.relative_to(ROOT)}")
+    label = "Contributions par mois : " + ", ".join(f"{m} {v}" for m, v in months)
+    return svg_doc(MONTHS_W + GUTTER / 2, H, "".join(body), style, label)
+
+
+def records_pane(s: dict) -> str:
+    cur, best = s["current_streak"], s["longest_streak"]
+    avg = s["total"] / s["active_days"] if s["active_days"] else 0
+    best_day = s["best_day"]
+    records = [  # (label, detail, value, unit)
+        ("Série en cours", span(cur, "aucune en cours"), str(cur["days"]), days_unit(cur["days"])),
+        ("Plus longue série", span(best, "aucune pour l'instant"), str(best["days"]), days_unit(best["days"])),
+        ("Jours actifs", f"{fr_number(100 * s['active_days'] / s['days'])} % de l'année", str(s["active_days"]),
+         f"/ {s['days']}"),
+        ("Meilleur jour", f"le {fr_date(best_day['date'])}" if best_day["count"] else "—",
+         fr_number(best_day["count"]), ""),
+        ("Par jour actif", "en moyenne", fr_number(avg, 1), ""),
+    ]
+    head, t = prompt("./stats.sh", width=RECORDS_W)
+    body = [panel(H, RECORDS_W), head]
+    for i, (label, detail, value, unit) in enumerate(records):
+        y = BODY_Y + i * ROW
+        unit_markup = f'<tspan font-size="12" fill="{MUTED}"> {escape(unit)}</tspan>' if unit else ""
+        rule = f'<line x1="{PAD}" y1="{y}.5" x2="{RECORDS_W - PAD}" y2="{y}.5" stroke="{LINE}"/>'
+        body.append(
+            f"<g{delay(t + i * 0.06)}>{rule}"
+            f'<text x="{PAD}" y="{y + 21}" font-size="12" fill="{SUB}">{escape(label)}</text>'
+            f'<text x="{PAD}" y="{y + 38}" font-size="12" fill="{MUTED}">{escape(detail)}</text>'
+            f'<text x="{RECORDS_W - PAD}" y="{y + 32}" font-size="20" fill="{FG}" text-anchor="end">'
+            f"{escape(value)}{unit_markup}</text></g>"
+        )
+    label = "Statistiques : " + ", ".join(f"{r[0]} {r[2]} {r[3]}".strip() for r in records)
+    inner = f'<g transform="translate({GUTTER / 2:g} 0)">{"".join(body)}</g>'
+    return svg_doc(RECORDS_W + GUTTER / 2, H, inner, label=label)
+
+
+def main() -> None:
+    s = json.loads(DATA.read_text(encoding="utf-8"))["stats"]
+    OUT.mkdir(parents=True, exist_ok=True)
+    for name, svg in (("stats-months", months_pane(s)), ("stats-records", records_pane(s))):
+        (OUT / f"{name}.svg").write_text(svg, encoding="utf-8")
+        print(f"assets/{name}.svg")
 
 
 if __name__ == "__main__":

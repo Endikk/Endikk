@@ -1,0 +1,38 @@
+{
+ "username": "Endikk",
+ "public_repos": 26,
+ "repos": [
+  {
+   "name": "Claudy",
+   "description": "",
+   "language": "Swift",
+   "stars": 6,
+   "pushed": "2026-11-15",
+   "url": "https://github.com/Endikk/Claudy"
+  },
+  {
+   "name": "Claudio",
+   "description": "",
+   "language": "C#",
+   "stars": 1,
+   "pushed": "2026-11-16",
+   "url": "https://github.com/Endikk/Claudio"
+  },
+  {
+   "name": "EVAN",
+   "description": "Supervision d'usine pour l'imprimerie d'étiquettes : quelle machine est en panne et, dans la machine, quel organe.",
+   "language": "TypeScript",
+   "stars": 0,
+   "pushed": "2026-11-12",
+   "url": "https://github.com/Endikk/EVAN"
+  },
+  {
+   "name": "VroumVroum-r3f",
+   "description": "VroumVroum-r3f est un jeu de course 3D développé avec React, TypeScript et Three.js. Il offre une expérience immersive avec des modèles 3D, des routes interactives et une interface moderne.",
+   "language": "TypeScript",
+   "stars": 0,
+   "pushed": "2025-07-07",
+   "url": "https://github.com/Endikk/VroumVroum-r3f"
+  }
+ ]
+}

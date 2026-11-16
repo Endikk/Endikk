@@ -1,31 +1,25 @@
 <div align="center">
 
-<h3><code>lucas@github ~ $ ./contributions.sh</code></h3>
+<img src="./assets/neofetch.svg" width="860" alt="Lucas Labonde, développeur full-stack &amp; cloud en Normandie. Mastère Architecture des SI au CESI, 5 ans d'alternance en grande entreprise. Python, C#, TypeScript, React, .NET, GCP, Docker, PostgreSQL." />
+
+<br><br>
+
+<a href="https://lucaslabonde.com"><img src="./assets/link-portfolio.svg" height="40" alt="Portfolio : lucaslabonde.com" /></a>&nbsp;
+<a href="https://www.linkedin.com/in/lucaslabonde/"><img src="./assets/link-linkedin.svg" height="40" alt="LinkedIn" /></a>&nbsp;
+<a href="mailto:labondepro@gmail.com"><img src="./assets/link-email.svg" height="40" alt="Email" /></a>
+
+<br><br>
+
+<a href="https://github.com/Endikk/Claudy"><img src="./assets/project-claudy.svg" width="50%" alt="Projet Claudy" /></a><a href="https://github.com/Endikk/Claudio"><img src="./assets/project-claudio.svg" width="50%" alt="Projet Claudio" /></a><a href="https://github.com/Endikk/EVAN"><img src="./assets/project-evan.svg" width="50%" alt="Projet EVAN" /></a><a href="https://github.com/Endikk/VroumVroum-r3f"><img src="./assets/project-vroumvroum-r3f.svg" width="50%" alt="Projet VroumVroum-r3f" /></a>
+
 <img src="./assets/contrib-heatmap.svg" width="860" alt="Graphe de contributions GitHub de Lucas sur la dernière année" />
 
 <br><br>
 
-<h3><code>lucas@github ~ $ whoami</code></h3>
-<table>
-  <tr>
-    <td valign="top"><img src="./assets/lucas-ascii.svg" width="370" alt="Portrait ASCII de Lucas" /></td>
-    <td valign="top"><img src="./assets/stats-dashboard.svg" width="490" alt="Statistiques GitHub : séries, contributions, jours actifs, meilleur jour et contributions par mois" /></td>
-  </tr>
-</table>
-
-<br>
-
-<h3><code>lucas@github ~ $ neofetch</code></h3>
-<img src="./assets/info-card.svg" width="860" alt="Lucas — Développeur Full-Stack &amp; Cloud en Normandie. Python, C#, TypeScript, React, .NET, GCP, Docker, PostgreSQL." />
+<img src="./assets/stats-months.svg" width="66%" alt="Contributions par mois sur les 12 derniers mois" /><img src="./assets/stats-records.svg" width="34%" alt="Statistiques GitHub : séries, jours actifs, meilleur jour, moyenne par jour actif" />
 
 <br><br>
 
-<h3><code>lucas@github ~ $ cat contact.txt</code></h3>
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/lucaslabonde/)
-[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:labondepro@gmail.com)
-[![Portfolio](https://img.shields.io/badge/Portfolio-1b3a5c?style=for-the-badge&logo=google-chrome&logoColor=white)](https://lucaslabonde.com)
-
-<sub>N'hésite pas à me contacter pour échanger sur des projets, des opportunités, ou simplement discuter de technologies émergentes&nbsp;!</sub>
+<img src="./assets/session.svg" width="860" alt="Hors code : Formule 1, basket, veille tech. Un projet, une opportunité ou une question tech : écris-moi." />
 
 </div>
