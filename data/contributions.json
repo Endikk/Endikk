@@ -2,12 +2,12 @@
  "username": "Endikk",
  "stats": {
   "total": 423,
-  "days": 367,
+  "days": 368,
   "active_days": 56,
   "current_streak": {
-   "days": 3,
-   "start": "2026-11-14",
-   "end": "2026-11-16"
+   "days": 0,
+   "start": null,
+   "end": null
   },
   "longest_streak": {
    "days": 5,
@@ -1871,6 +1871,11 @@
   },
   {
    "date": "2026-11-17",
+   "count": 0,
+   "level": 0
+  },
+  {
+   "date": "2026-11-18",
    "count": 0,
    "level": 0
   }
