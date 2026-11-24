@@ -1,13 +1,13 @@
 {
  "username": "Endikk",
  "stats": {
-  "total": 478,
-  "days": 366,
-  "active_days": 59,
+  "total": 494,
+  "days": 367,
+  "active_days": 61,
   "current_streak": {
-   "days": 0,
-   "start": null,
-   "end": null
+   "days": 2,
+   "start": "2026-11-23",
+   "end": "2026-11-24"
   },
   "longest_streak": {
    "days": 5,
@@ -20,7 +20,7 @@
   },
   "best_month": {
    "month": "2026-11",
-   "count": 134
+   "count": 150
   },
   "monthly": {
    "2025-11": 0,
@@ -35,7 +35,7 @@
    "2026-08": 26,
    "2026-09": 103,
    "2026-10": 52,
-   "2026-11": 134
+   "2026-11": 150
   }
  },
  "days": [
@@ -1866,8 +1866,13 @@
   },
   {
    "date": "2026-11-23",
-   "count": 0,
-   "level": 0
+   "count": 7,
+   "level": 1
+  },
+  {
+   "date": "2026-11-24",
+   "count": 9,
+   "level": 1
   }
  ]
 }
